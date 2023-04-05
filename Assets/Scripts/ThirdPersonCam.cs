@@ -8,7 +8,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
-    public Rigidbody rb;
+    //public Rigidbody rb;
 
     public float rotationSpeed;
 
@@ -35,7 +35,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         // switch styles
         //if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetMouseButtonDown(1)) SwitchCameraStyle(CameraStyle.Combat);
+        //if (Input.GetMouseButtonDown(1)) SwitchCameraStyle(CameraStyle.Combat);
 
 
         // rotate orientation
@@ -64,7 +64,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void SwitchCameraStyle(CameraStyle newStyle)
     {
-        Debug.Log("cam swap");
+        //Debug.Log("cam swap");
         combatCam.SetActive(false);
         thirdPersonCam.SetActive(false);
 
