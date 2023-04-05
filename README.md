@@ -3,4 +3,4 @@
 
 ## 3D Roguelike made in Unity engine WIP
 
-Short Summary: The sprawling metropolis of Synth city full of drugs, gangs, and palm trees has a hidden power struggle between shadow organizations fighting for control. Within this power struggle demons have utilized their unparalleled power and confidence to assert themselves into the upper echelons of control over the city. that is until they get put face to face with a demon slayer.
+Short Summary: The sprawling metropolis of Imaim city full of drugs, gangs, and palm trees has a hidden power struggle between shadow organizations fighting for control. Within this power struggle demons have utilized their unparalleled strength and skill to assert themselves into the upper echelons of control over the city. that is until they get put face to face with a demon slayer.
