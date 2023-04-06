@@ -23,16 +23,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode runKey;
 
     [Header("Mouse")]
-    [SerializeField] float mouseSensitivity = 3.5f;
+    //[SerializeField] float mouseSensitivity = 3.5f;
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
-    [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
+    //[SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField] bool lockCursor = true;
 
     private float movementSpeed;
 
-    float cameraPitch = 0.0f;
+    //float cameraPitch = 0.0f;
     float velocityY = 0.0f;
-    CharacterController controller = null;
+    public CharacterController controller = null;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
@@ -50,11 +50,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slopeForce;
     [SerializeField] private float slopeForceRayLength;
 
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+
 
     private bool isJumping;
 
     [Header("Game Options")]
     public bool Paused = false;
+
+    public MovementState state;
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        crouching,
+        sliding,
+        air,
+        idle
+    }
+
 
     void Start()
     {
@@ -69,31 +86,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         cursorLock();
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        if (!Paused) //game isnt paused allow for movement
+        StateHandler();
+
+        if (!Paused)
         {
             UpdateMovement();
         }
     }
-
-    #region cursor and mouse
-
-    void cursorLock()
-    {
-        if (!Paused)
-        {
-
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-        }
-    }
-    #endregion
 
     #region movement
     // apply forces in correct direction for player movement
@@ -173,4 +174,47 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     #endregion
+
+    private void StateHandler()
+    {
+        //Mode - Idle
+        if (grounded && controller.velocity.magnitude <= 0.1)
+        {
+            state = MovementState.idle;
+        }
+
+        // Mode - Sprinting
+        else if (grounded && Input.GetKey(runKey))
+        {
+            state = MovementState.sprinting;
+        }
+
+        // Mode - Walking
+        else if (grounded)
+        {
+            state = MovementState.walking;
+        }
+
+        // Mode - Air
+        else if(!grounded)
+        {
+            state = MovementState.air;
+        }
+    }
+
+    void cursorLock()
+    {
+        if (!Paused)
+        {
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+    }
 }
