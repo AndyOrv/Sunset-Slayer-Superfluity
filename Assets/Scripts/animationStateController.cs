@@ -22,7 +22,7 @@ public class animationStateController : MonoBehaviour
         
         StateHandler();
         //StateVelocityHandler();
-        Debug.Log(playerStrafeSpeed);
+        Debug.Log(playerSpeed);
     }
 
     private void FixedUpdate()
