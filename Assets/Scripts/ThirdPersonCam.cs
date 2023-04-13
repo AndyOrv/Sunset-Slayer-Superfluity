@@ -53,12 +53,14 @@ public class ThirdPersonCam : MonoBehaviour
                 playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
-        else if (currentStyle == CameraStyle.Combat)
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            orientation.forward = dirToCombatLookAt.normalized;
+            orientation.forward = Vector3.Slerp(playerObj.forward, dirToCombatLookAt.normalized, Time.deltaTime * rotationSpeed * 50);
 
-            playerObj.forward = dirToCombatLookAt.normalized;
+            playerObj.forward = Vector3.Slerp(playerObj.forward, dirToCombatLookAt.normalized, Time.deltaTime * rotationSpeed * 50);
+
+            //Debug.Log("turn");
         }
     }
 

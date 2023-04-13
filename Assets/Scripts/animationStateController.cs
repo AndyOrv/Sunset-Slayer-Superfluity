@@ -22,7 +22,7 @@ public class animationStateController : MonoBehaviour
         
         StateHandler();
         //StateVelocityHandler();
-        Debug.Log(playerSpeed);
+        //Debug.Log(playerSpeed);
     }
 
     private void FixedUpdate()
@@ -62,9 +62,9 @@ public class animationStateController : MonoBehaviour
         else
         {
             //Debug.Log("Idle");
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isRunning", false);
-            anim.SetBool("isFloating", false);
+            //anim.SetBool("isWalking", false);
+            //anim.SetBool("isRunning", false);
+            //anim.SetBool("isFloating", false);
         }
     }
 
