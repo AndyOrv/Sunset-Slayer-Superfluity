@@ -5,6 +5,7 @@ using UnityEngine;
 public class RayCastWeapon : MonoBehaviour
 {
     public bool isFiring = false;
+    public bool ignorePlayer = false;
 
     [Header("Particle Systems")]
     public ParticleSystem muzzleFlash;
@@ -18,6 +19,11 @@ public class RayCastWeapon : MonoBehaviour
     Ray ray;
     RaycastHit hitInfo;
     public LayerMask IgnoreMe;
+
+    private void Start()
+    {
+        //Get bullet projectile component of bullet -> set ignoreplayer to = ignoreplayer
+    }
 
     public void StartFiring()
     {

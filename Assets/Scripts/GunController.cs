@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeaponController : MonoBehaviour
+public class GunController : MonoBehaviour
 {
     [SerializeField] RayCastWeapon gun;
-
+    [SerializeField] bool ignorePlayer;
 
     private void LateUpdate()
     {
