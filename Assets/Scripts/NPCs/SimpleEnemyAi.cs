@@ -18,6 +18,7 @@ public class SimpleEnemyAi : MonoBehaviour
     [Header("Attacking")]
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] GameObject projectile;
+    [SerializeField] GunController gCon;
     bool alreadyAttacked;
 
     [Header("States")]
@@ -27,6 +28,7 @@ public class SimpleEnemyAi : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        gCon = GetComponent<GunController>();
     }
 
     private void Update()
@@ -77,9 +79,13 @@ public class SimpleEnemyAi : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code here (TEMP SOLUTION)
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 2f, ForceMode.Impulse);
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 2f, ForceMode.Impulse);
+            if (!gCon.fireWeapon)
+            {
+                gCon.fireWeapon = true;
+            }
             //
 
             alreadyAttacked = true;
@@ -90,6 +96,7 @@ public class SimpleEnemyAi : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        gCon.fireWeapon = false;
     }
 
     private void OnDrawGizmosSelected()

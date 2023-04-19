@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RayCastWeapon : MonoBehaviour
 {
-    public bool isFiring = false;
-    public bool ignorePlayer = false;
+    [Header("Weapon stats")]
+    [SerializeField] float damage;
 
     [Header("Particle Systems")]
     public ParticleSystem muzzleFlash;
@@ -15,6 +15,8 @@ public class RayCastWeapon : MonoBehaviour
     [Header("Ray Cast Components")]
     public Transform rayOrigin;
     public Transform target;
+    public bool fireForward;
+    public bool isFiring = false;
 
     Ray ray;
     RaycastHit hitInfo;
@@ -31,12 +33,15 @@ public class RayCastWeapon : MonoBehaviour
         muzzleFlash.Emit(1);
 
         ray.origin = rayOrigin.position;
-        ray.direction = target.position - rayOrigin.position;
+        if(fireForward)
+            ray.direction = rayOrigin.forward;
+        else
+            ray.direction = target.position - rayOrigin.position;
 
         var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
 
-        if(Physics.Raycast(ray, out hitInfo, 1000f, ~IgnoreMe))
+        if(Physics.Raycast(ray, out hitInfo, 1000f, ~IgnoreMe)) //this is preventing bullets from flying away
         {       
             Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
 
@@ -45,8 +50,20 @@ public class RayCastWeapon : MonoBehaviour
             hitEffect.Emit(1);
 
             tracer.transform.position = hitInfo.point;
+
+            doDamage(hitInfo, -damage);
         }
     }
+
+    private void doDamage(RaycastHit target, float damage)
+    {
+        Health heth = target.collider.GetComponent<Health>();
+        if (heth != null)
+        {
+            heth.ChangeHealth(damage);
+        }
+    }
+
     public void StopFiring()
     {
         isFiring = false;

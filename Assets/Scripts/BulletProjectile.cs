@@ -8,7 +8,7 @@ public class BulletProjectile : MonoBehaviour
     public bool ignorePlayer = false;
 
     private Rigidbody rb;
-    private float dmg = 10;//add get and set
+    private float dmg = -10;//add get and set
 
     private void Awake()
     {

@@ -15,6 +15,13 @@ public class Health : MonoBehaviour
     {
         health = maxhealth;
     }
+    private void Update()
+    {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void ChangeHealth(float amount)
     {

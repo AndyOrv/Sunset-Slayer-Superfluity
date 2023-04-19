@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e66303dc5dd23744a136464767f697d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destory: 0
+  destory: 1
   ignorePlayer: 0
 --- !u!33 &1759203157966783465
 MeshFilter:
