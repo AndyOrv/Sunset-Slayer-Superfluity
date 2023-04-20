@@ -41,7 +41,8 @@ public class RayCastWeapon : MonoBehaviour
         var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
 
-        if(Physics.Raycast(ray, out hitInfo, 1000f, ~IgnoreMe)) //this is preventing bullets from flying away
+        //this is preventing bullets from flying away
+        if (Physics.Raycast(ray, out hitInfo, 1000f, ~IgnoreMe)) 
         {       
             Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1.0f);
 
