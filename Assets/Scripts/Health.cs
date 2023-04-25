@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+-- Author: Andrew Orvis
+-- Description: 
+ */
+
+
 public class Health : MonoBehaviour
 {
     [Header("Health")]
