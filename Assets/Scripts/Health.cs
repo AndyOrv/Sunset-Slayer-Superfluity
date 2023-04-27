@@ -34,4 +34,20 @@ public class Health : MonoBehaviour
         health += amount;
         Debug.Log("Current Health: " + health);
     }
+
+    /*
+    public Slider slider; // Reference to the slider component
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
+    }
+
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+    }
+     
+     */
 }
